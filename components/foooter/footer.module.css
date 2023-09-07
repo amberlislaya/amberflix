@@ -1,0 +1,54 @@
+.footer {
+    background-color: #121111;
+    padding: 20px;
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+
+}
+
+.title {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #efb810;
+
+}
+
+.footer h4 {
+    font-size: 15px;
+    margin-bottom: 5px;
+    margin-top: 20px;
+    color: #f8f9fa;
+
+}
+
+
+.footer a {
+    display: inline-block;
+    margin: 0 10px;
+    font-size: 20px;
+    color: #efb810;
+    ;
+
+
+}
+
+
+.footer h6 {
+    font-size: 13px;
+    margin-top: 20px;
+
+}
+
+a:hover {
+    color: #003f8d;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+    font-size: small;
+
+
+}
