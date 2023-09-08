@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
 import backgroundImage from '../../assets/avatar2.jpg';
+import { firebaseAuth } from "../../utils/firebase-config";
 import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { FaPlay } from 'react-icons/fa';
+import Navbar from '../../components/navbar/Navbar'
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 import './amber.css'
 
@@ -17,6 +19,10 @@ const truncate = (string, n)=> {
 return string?.length > n ? string.substr(0, n - 1) + '...' : string;
 }
 
+  onAuthStateChanged(firebaseAuth, (currentUser) => {
+    if (!currentUser) navigate("/login");
+  });
+
   window.onscroll = () => {
     setIsScrolled(window.pageYOffset === 0 ? false : true);
     return () => (window.onscroll = null);
@@ -26,6 +32,7 @@ return string?.length > n ? string.substr(0, n - 1) + '...' : string;
 
   return (
 <Container>
+      <Navbar isScrolled={isScrolled} />
 <div className='hero'>
 <img src={backgroundImage}
     alt="background"

@@ -1,80 +1,81 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { createUserWithEmailAndPassword, 
-  onAuthStateChanged } from 'firebase/auth'
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import BackgroundImage from '../../components/backgroundImage/BackgroundImage'
-import styled from 'styled-components'
-import Header from '../../components/header/Header'
-import {firebaseAuth} from '../../utils/firebase-config'
+import styled from 'styled-components';
+import Header from '../../components/header/Header';
+import {firebaseAuth} from '../../utils/firebase-config';
 
 export default function Signup() {
-  const [showPassword, setShowPassword] = useState(false)
-  const navigate = useNavigate();
-
+  const [showPassword, setShowPassword] = useState(false);
   const [formValues, setFormValues] = useState({
     email: "",
     password: "",
-});
+  });
+
+  const navigate = useNavigate();
 
   const handleSignIn = async () => {
-try {
 
-const {email, password} = formValues;
-await createUserWithEmailAndPassword(firebaseAuth, email, password)
-} catch(error) {
-  console.log(error)
+  try {
+      const { email, password } = formValues;
+      await createUserWithEmailAndPassword(firebaseAuth, email, password);
+  } catch (error) {
+      console.log(error);
 }
 };
 
-onAuthStateChanged(firebaseAuth, (currentUser) => {
-  if(currentUser) navigate("/")
-});
+  onAuthStateChanged(firebaseAuth, (currentUser) => {
+    if (currentUser) navigate("/");
+  });
 
   return ( 
-<Container showPassword = { showPassword }>
+
+    <Container showPassword={showPassword}>
 <BackgroundImage/>
 <div className="content">
   <Header login/>
-<div className="body flex column a-center j-center">
+ <div className="body flex column a-center j-center">
 <div className="text flex column">
 <h1>Disfruta de las mejores peliculas y series</h1>
 <h4>En tu Tv, Phone o Tablet</h4>
 <h6>Listo para comenzar? Registrate</h6>
-</div> 
-<div className="form">
-  <input 
-  type="email" 
-  placeholder='Email address'  
-  onChange={(e) => 
-  setFormValues({
-    ...formValues, 
-    [e.target.name]: e.target.value, 
-})
-} 
-    name='email' 
-  value={formValues.email}
-/>
+</div>
 
-{showPassword && ( 
-  <input 
-  type="password" 
-  placeholder='Password'  
-  onChange={(e) => 
-  setFormValues({ ...formValues, 
-    [e.target.name]: e.target.value, })
+ <div className="form">
+<input
+    type="email"
+    placeholder="Email address"
+    onChange={(e) =>
+    setFormValues({
+    ...formValues,
+    [e.target.name]: e.target.value,
+})
 }
-name='password' 
-value={formValues.password}
+    name="email"
+    value={formValues.email}
+/>
+    {showPassword && (
+<input
+    type="password"
+    placeholder="Password"
+    onChange={(e) =>
+    setFormValues({
+    ...formValues,
+    [e.target.name]: e.target.value,
+})
+}
+    name="password"
+    value={formValues.password}
 />
 )}
-{!showPassword && (
+    {!showPassword && (
 <button onClick={() => setShowPassword(true)}>Get Started</button>
 )}
 </div>
-{showPassword && <button onClick={handleSignIn}>Log In</button>}
-</div> 
-</div> 
-
+    {showPassword && <button onClick={handleSignIn}>Log In</button>}
+</div>
+</div>
 </Container>
 );
 }

@@ -11,6 +11,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+
   const handleLogin = async () => {
     try {
       await signInWithEmailAndPassword(firebaseAuth, email, password);
@@ -19,28 +20,31 @@ function Login() {
     }
   };
 
+
   onAuthStateChanged(firebaseAuth, (currentUser) => {
     if (currentUser) navigate("/");
   });
 
   return (
+
 <Container>
   <BackgroundImage />
 <div className="content">
   <Header />
-<div className="form-container flex column a-center j-center">
+ <div className="form-container flex column a-center j-center">
 <div className="form flex column a-center j-center">
 <div className="title">
-      <h3>Login</h3>
+    <h3>Login</h3>
 </div>
-<div className="container flex column">
-      <input
-      type="text"
-      placeholder="Email"
-      onChange={(e) => setEmail(e.target.value)}
-      value={email}
+
+ <div className="container flex column">
+<input
+     type="text"
+     placeholder="Email"
+     onChange={(e) => setEmail(e.target.value)}
+     value={email}
 />
-      <input
+<input
       type="password"
       placeholder="Password"
       onChange={(e) => setPassword(e.target.value)}

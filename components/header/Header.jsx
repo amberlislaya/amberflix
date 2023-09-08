@@ -3,7 +3,8 @@ import styled from 'styled-components'
 import logo from '../../assets/AMBERLIS-logos_white.png'
 import { useNavigate } from 'react-router-dom';
 
-function Header(props) {
+
+export default function Header(props) {
 
   const StyledHeader = styled.div`
 padding: 0 4rem;
@@ -28,18 +29,17 @@ font-size: 1.05rem;
 }
   `;
 
-const navigate= useNavigate();
+  const navigate = useNavigate();
 
   return (
-    <StyledHeader className='flex a-center j-between'>
-  <div className="logo">
-    <img src={logo} alt="logo" />
-  </div>
-  <button onClick={() => navigate(props.login ? "/login" : "/signup")}>
-    {props.login ? 'Log In' : 'Sign In'}
-  </button>
-</StyledHeader>
+    <StyledHeader className="flex a-center j-between">
+      <div className="logo">
+        <img src={logo} alt="logo" />
+      </div>
+      <button onClick={() => navigate(props.login ? "/login" : "/signup")}>
+        {props.login ? "Log In" : "Sign In"}
+      </button>
+    </StyledHeader>
   );
 }
 
-export default Header

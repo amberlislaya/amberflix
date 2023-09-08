@@ -39,7 +39,8 @@ function Amberlis() {
   };
 
   return (
-    <Container>
+
+<Container>
       <Banner/>
       <Navbar isScrolled={isScrolled} />
       <div className="hero">

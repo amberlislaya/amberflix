@@ -27,16 +27,18 @@ function Navbar({ isScrolled }) {
 
 
   return (
+
 <Container>
-    <nav className={`${isScrolled ? "scrolled" : ""} flex`}>
-<div className="left flex a-center">
-<div className="brand flex a-center j-center">
+
+<nav className={`${isScrolled ? "scrolled" : ""} flex`}>
+  <div className="left flex a-center">
+  <div className="brand flex a-center j-center">
    <Link to={("/")}> <img src={Logo} alt="Logo" /></Link>
 </div>
 
-    <ul className="links flex">
-        {links.map(({ name, link }) => {   
-	return (
+  <ul className="links flex">
+    {links.map(({ name, link }) => {
+        return (
 <li key={name}>
     <Link to={link}>{name}</Link>
 </li>
@@ -45,12 +47,12 @@ function Navbar({ isScrolled }) {
 
 </ul>
 </div>
-<div className="right flex a-center">
+ <div className="right flex a-center">
 <div className={`search ${showSearch ? "show-search" : ""}`}>
 <button
     onFocus={() => setShowSearch(true)}
     onBlur={() => {
-    if (!inputHover) {
+  if (!inputHover) {
     setShowSearch(false);
 }
 }}
@@ -83,7 +85,7 @@ function Navbar({ isScrolled }) {
 </div>
 
 <Link to={("/signup")}>
-<button onClick={() => signOut(firebaseAuth)}>
+ <button onClick={() => signOut(firebaseAuth)}>
     <FaPowerOff />
 </button>
 </Link> 
@@ -218,7 +220,7 @@ input {
 }
 `;
 
-export default Navbar
+export default Navbar;
 
 
 

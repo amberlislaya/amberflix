@@ -16,11 +16,12 @@ import CardSlider from '../../components/cardSlider/CardSlider';
 const MoviePage = () => {
 
   const [isScrolled, setIsScrolled] = useState(false);
+  const movies = useSelector((state) => state.netflix.movies);
   const genres = useSelector((state) => state.netflix.genres);
   const genresLoaded = useSelector((state) => state.netflix.genresLoaded);
-  const movies = useSelector((state) => state.netflix.movies);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   
 
   useEffect(() => {
@@ -28,20 +29,19 @@ const MoviePage = () => {
   }, []);
 
   useEffect(() => {
-    if(genresLoaded) { dispatch(fetchMovies({ genres, type: "movie" }));
-  }
-}, [genresLoaded]);
-  
-const [user, setUser] = useState(undefined);
+    if (genresLoaded) {
+      dispatch(fetchMovies({ genres, type: "movie" }));
+    }
+  }, [genresLoaded]);
 
+  const [user, setUser] = useState(undefined);
 
   onAuthStateChanged(firebaseAuth, (currentUser) => {
     if (currentUser) setUser(currentUser.uid);
     else navigate("/login");
   });
 
-
-   window.onscroll = () => {
+  window.onscroll = () => {
     setIsScrolled(window.pageYOffset === 0 ? false : true);
     return () => (window.onscroll = null);
   };
@@ -56,9 +56,10 @@ const [user, setUser] = useState(undefined);
 </div>
 
 <div className='data'>
-   <SelectGenre genres={genres} type="movie" />
-   {movies.length ? <Slider movies={movies} /> : <NotAvailable />}
-</div>
+        <SelectGenre genres={genres} type="movie" />
+        {movies.length ? <Slider movies={movies} /> : <NotAvailable />}
+      </div>
+
 </Container>
 );
 }
